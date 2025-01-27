@@ -1,0 +1,4 @@
+// 1.20.1	2025-01-27T11:45:49.4065471	Registries
+bcb67565ed79b29f655746f64e56a7fc726a440c data/moremushrooms/forge/biome_modifier/add_inky_cap.json
+f186e1d2836a5fb0fdaebd70bdecc08d3b9e9422 data/moremushrooms/worldgen/configured_feature/huge_inky_cap.json
+797dfae7e1ab3866b0e0b62600ebd868fd1cc3f8 data/moremushrooms/worldgen/placed_feature/inky_cap_placed.json

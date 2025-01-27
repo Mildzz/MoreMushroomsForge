@@ -1,6 +1,12 @@
 package net.mildzz.moremushrooms;
 
 import com.mojang.logging.LogUtils;
+import net.mildzz.moremushrooms.block.ModBlocks;
+import net.mildzz.moremushrooms.item.ModCreativeModeTabs;
+import net.mildzz.moremushrooms.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -27,6 +33,11 @@ public class MoreMushroomsMod
     public MoreMushroomsMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModCreativeModeTabs.register(modEventBus);
+
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -41,12 +52,19 @@ public class MoreMushroomsMod
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
+                    ModBlocks.INKY_CAP.getId(), // The mushroom block
+                    ModBlocks.POTTED_INKY_CAP // The potted version
+            );
+        });
     }
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.MUSHROOM);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

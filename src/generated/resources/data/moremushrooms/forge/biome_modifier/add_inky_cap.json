@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#forge:is_mushroom",
+  "features": "moremushrooms:inky_cap_placed",
+  "step": "vegetal_decoration"
+}
